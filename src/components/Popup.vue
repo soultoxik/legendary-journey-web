@@ -1,15 +1,17 @@
 <template>
 <div id="popup">
-  <div id="popup-back" class="hide" @click="toggle">
+  <div id="popup-back" class="hide">
+    <div id="popup-dark" @click="toggle"></div>
     <div id="popup-content-container">
-      <slot></slot>
+      <Slider></Slider>
     </div>
   </div>
 </div>
 </template>
 
 <script>
-import $ from "jquery";
+
+import Slider from './Slider';
 
 export default {
   name: 'popup',
@@ -18,16 +20,19 @@ export default {
       showed: false
     }
   },
+  components: {
+    Slider
+  },
   methods: {
     toggle: function() {
       this.showed === true? this.hide(): this.show();
     },
     hide: function() {
-      $('#popup-back').addClass('hide');
+      document.querySelector('#popup-back').classList.add('hide');
       this.showed = false;
     },
     show: function() {
-      $('#popup-back').removeClass('hide');
+      document.querySelector('#popup-back').classList.remove('hide');
       this.showed = true;
     }
   }
@@ -41,11 +46,20 @@ export default {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
+#popup-dark {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 #popup-content-container {
+  position: relative;
   width: 90%;
   height: 90%;
   background-color: #FFFFFF;
