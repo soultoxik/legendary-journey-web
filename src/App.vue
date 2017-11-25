@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Map v-on:popup="openPopup"></Map>
+    <BillboardMap v-on:popup="openPopup"></BillboardMap>
     <Popup ref="child">
       test
     </Popup>
@@ -14,7 +14,7 @@ import Popup from './components/Popup';
 export default {
   name: 'app',
   components: {
-    Map,
+    'BillboardMap': Map,
     Popup
   },
   methods: {
