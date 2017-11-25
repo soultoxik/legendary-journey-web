@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import url('~leaflet/dist/leaflet.css');
 #map {
   height: 100vh;

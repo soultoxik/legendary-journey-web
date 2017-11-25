@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 html, body {
   height: 100%;
   overflow-y: hidden;
