@@ -20,6 +20,9 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  externals: {
+    jquerySuperslides: 'https://cdnjs.cloudflare.com/ajax/libs/superslides/0.6.2/jquery.superslides.min.js'
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {

@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-    <Map></Map>
+    <Map v-on:popup="openPopup"></Map>
+    <Popup ref="child">
+      test
+    </Popup>
   </div>
 </template>
 
 <script>
-import Map from './components/Map'
+import Map from './components/Map';
+import Popup from './components/Popup';
 
 export default {
   name: 'app',
   components: {
-    Map
+    Map,
+    Popup
+  },
+  methods: {
+    openPopup: function() {
+      this.$refs.child.toggle();
+    }
   }
 }
 </script>
