@@ -1,8 +1,10 @@
 <template id="board-sights">
 <Billboard>
-  <p>А если бы вы ехали общественным транспортом,
-    смогли бы увидеть <span class="sight">{{sight}}</span></p>
-  <p class="board-resume">Общественный транспорт решает</p>
+  <p>You will never see <span class="sight">{{sight}}</span>
+    while driving</p>
+    <p> Want to seat, relax and enjoy the view?
+  </p>
+  <p class="board-resume">Use public transport</p>
 </Billboard>
 </template>
 

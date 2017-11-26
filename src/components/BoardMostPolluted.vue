@@ -1,8 +1,8 @@
 <template id="board-most-polluted">
 <Billboard>
-  <p>Вы приближаетесь к самой загрезняемой точке!
-    Возможно, пора искать обходной путь?</p>
-  <p class="board-resume">Общественный транспорт решает</p>
+  <p> You're approaching one of the most polluted areas! </p>
+    <p> Do you care?</p>
+  <p class="board-resume">What about using a tram instead?</p>
 </Billboard>
 </template>
 

@@ -1,9 +1,9 @@
 <template id="board-parkings">
 <Billboard>
-  <p>Ближайшая остановка общественного транспорта в
+  <p>Nearest bus stop is only a
     <span class="time-to-bus-stop">{{timeToBusStop}}</span>
-    минутах ходьбы отсюда.</p>
-  <p class="board-resume">Общественный транспорт решает</p>
+    minutes walk from here.</p>
+  <p class="board-resume">It's faster!</p>
 </Billboard>
 </template>
 
