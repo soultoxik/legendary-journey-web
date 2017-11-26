@@ -4,6 +4,16 @@
   <div class="decoration"></div>
   <p> a <span class="animal">{{animal}}</span> will die in <span class="life-exp">{{lifeExp}} hours</span></p>
   <p class="board-resume">Animals are not guilty </p>
+  <div v-if="animal === 'dog'" id="animal-dog" class="animal-photo"></div>
+  <div v-if="animal === 'cat or dog'" id="animal-cat" class="animal-photo"></div>
+  <div v-if="animal === 'chick'" id="animal-chick" class="animal-photo"></div>
+  <div v-if="animal === 'goat'" id="animal-goat" class="animal-photo"></div>
+  <div v-if="animal === 'hamster'" id="animal-hamster" class="animal-photo"></div>
+  <div v-if="animal === 'monkey'" id="animal-monkey" class="animal-photo"></div>
+  <div v-if="animal === 'mouse'" id="animal-mouse" class="animal-photo"></div>
+  <div v-if="animal === 'pigeon'" id="animal-pigeon" class="animal-photo"></div>
+  <div v-if="animal === 'rabbit'" id="animal-rabbit" class="animal-photo"></div>
+  <div v-if="animal === 'rat'" id="animal-rat" class="animal-photo"></div>
 </Billboard>
 </template>
 
@@ -65,4 +75,53 @@ export default {
   background-size: cover;
 }
 
+.animal-photo {
+  position: absolute;
+  top: 75px;
+  left: 25px;
+  opacity: 0.4;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+}
+
+#animal-cat {
+  background-image: url("/static/img/animals/cat.png");
+}
+
+#animal-dog {
+  background-image: url("/static/img/animals/dog.png");
+}
+
+#animal-pigeon {
+  background-image: url("/static/img/animals/pigeon.png");
+}
+
+#animal-hamster {
+  background-image: url("/static/img/animals/hamster.png");
+}
+
+#animal-chick {
+  background-image: url("/static/img/animals/chick.png");
+}
+
+#animal-goat {
+  background-image: url("/static/img/animals/goat.png");
+}
+
+#animal-monkey {
+  background-image: url("/static/img/animals/monkey.png");
+}
+
+#animal-mouse {
+  background-image: url("/static/img/animals/mouse.png");
+}
+
+#animal-rabbit {
+  background-image: url("/static/img/animals/rabbit.png");
+}
+
+#animal-rat {
+  background-image: url("/static/img/animals/rat.png");
+}
 </style>
