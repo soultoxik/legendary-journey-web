@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     openPopup: function(event) {
-      this.$emit('popup', event.layer.coords);
+      console.log(event);
+      this.$emit('popup', event.latlng);
     },
     createMap: function() {
       this.map = L.map('map').setView(config.map.center, config.map.zoom);
@@ -43,7 +44,7 @@ export default {
         accessToken: config.map.mapboxToken
       }).addTo(this.map);
 
-      this.featureGroup = L.featureGroup().addTo(this.map).on("click", this.openPopup);
+      this.map.on("click", this.openPopup);
     },
     getCoords: function() {
       return new Promise((resolve, reject) => {
@@ -75,8 +76,7 @@ export default {
       this.getCoords()
         .then((coords) => {
           coords.forEach((coord) => {
-            let marker = L.marker(coord).addTo(this.featureGroup);
-            marker.coords = coord;
+            new L.marker(coord).addTo(this.map);
           });
         });
     }
