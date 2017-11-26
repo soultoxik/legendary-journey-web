@@ -12,13 +12,15 @@
 <script>
 
 import Slider from './Slider';
+import config from '../config';
 
 export default {
   name: 'popup',
   data: function() {
     return {
       showed: false,
-      stationData: {}
+      stationData: {},
+      coords: {}
     }
   },
   components: {
@@ -29,10 +31,36 @@ export default {
       document.querySelector('#popup-back').classList.add('hide');
       this.showed = false;
     },
-    show: function(data) {
-      this.stationData = data || {};
-      document.querySelector('#popup-back').classList.remove('hide');
-      this.showed = true;
+    show: function(coords) {
+      this.coords = coords;
+
+      this.loadData()
+        .then((data) => {
+          this.stationData = data;
+          document.querySelector('#popup-back').classList.remove('hide');
+          this.showed = true;
+        })
+
+      setInterval(function () {
+        if(this.showed) {
+          this.loadData()
+            .then((data) => {
+              this.stationData = data;
+            })
+        }
+      }.bind(this), 5000); 
+    },
+    loadData: function() {
+      return new Promise((resolve, reject) => {
+        fetch(`${config.dataServer}/fullinfo/${this.coords.lat}/${this.coords.lng}`)
+          .then((response) => {
+            if(response.ok) {
+              resolve(response.json());
+            } else {
+              throw 'Network error';
+            }
+          });
+      });
     }
   }
 }

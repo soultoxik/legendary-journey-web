@@ -24,8 +24,6 @@ export default {
       required: true
     } 
   },
-  mounted: function() {
-  },
   data: function() {
     return {
       slides: [

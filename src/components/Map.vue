@@ -30,7 +30,9 @@ export default {
   },
   methods: {
     openPopup: function(event) {
+      // let marker = new L.marker(event.latlng).addTo(this.map);
       this.$emit('popup', event.latlng);
+      // this.map.removeLayer(marker);
     },
     createMap: function() {
       this.map = L.map('map').setView(config.map.center, config.map.zoom);
