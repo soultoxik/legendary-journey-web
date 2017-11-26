@@ -1,7 +1,7 @@
 <template>
 <div id="popup">
   <div id="popup-back" class="hide">
-    <div id="popup-dark" @click="toggle"></div>
+    <div id="popup-dark" @click="hide"></div>
     <div id="popup-content-container">
       <Slider></Slider>
     </div>
@@ -17,21 +17,20 @@ export default {
   name: 'popup',
   data: function() {
     return {
-      showed: false
+      showed: false,
+      stationData: {}
     }
   },
   components: {
     Slider
   },
   methods: {
-    toggle: function() {
-      this.showed === true? this.hide(): this.show();
-    },
     hide: function() {
       document.querySelector('#popup-back').classList.add('hide');
       this.showed = false;
     },
-    show: function() {
+    show: function(data) {
+      this.stationData = data || {};
       document.querySelector('#popup-back').classList.remove('hide');
       this.showed = true;
     }

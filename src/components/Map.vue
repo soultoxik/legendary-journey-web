@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    openPopup: function() {
-      this.$emit('popup');
+    openPopup: function(event) {
+      this.$emit('popup', event.layer.coords);
     },
     createMap: function() {
       this.map = L.map('map').setView(config.map.center, config.map.zoom);
@@ -38,41 +38,45 @@ export default {
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
+        //minZoom: 9,
         id: 'mapbox.streets',
         accessToken: config.map.mapboxToken
       }).addTo(this.map);
 
       this.featureGroup = L.featureGroup().addTo(this.map).on("click", this.openPopup);
     },
-    getCoordinates: function() {
+    getCoords: function() {
       return new Promise((resolve, reject) => {
-        let trackedCoordinates = [];
+        let trackedCoords = [];
 
-        fetch(config.dataServer)
+        fetch(`${config.dataServer}/stations`)
           .then((response) => {
             if(response.ok) {
               return response.json();
+            } else {
+              throw 'Network error';
             }
-        
-            throw 'Network error';
           })
           .then((json) => {
             json['stations'].forEach((station) => {
-              trackedCoordinates.push(station['coord']);
+              trackedCoords.push(
+                station['coord']
+              );
             });
           })
           .then(() => {
-            resolve(trackedCoordinates);
+            resolve(trackedCoords);
           });
       });
     },
     renderMap: function() {
       this.createMap();
 
-      this.getCoordinates()
-        .then((coordinates) => {
-          coordinates.forEach((coordinate) => {
-            L.marker(coordinate).addTo(this.featureGroup);
+      this.getCoords()
+        .then((coords) => {
+          coords.forEach((coord) => {
+            let marker = L.marker(coord).addTo(this.featureGroup);
+            marker.coords = coord;
           });
         });
     }
