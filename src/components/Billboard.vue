@@ -19,6 +19,7 @@ export default {
   color: #FFF;
   height: 100%;
   padding: 10px 30px;
+  font-family: Zeynalabdin;
 }
 .board * {
   margin: auto;

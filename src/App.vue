@@ -42,6 +42,11 @@ export default {
 </script>
 
 <style>
+@font-face { 
+  font-family: Zeynalabdin; 
+  src: url('/static/fonts/Zeynalabdin.otf');
+}
+
 html, body {
   height: 100%;
   overflow-y: hidden;
