@@ -15,9 +15,10 @@ export default {
 
 <style scoped>
 .board {
-  background-color: #000;
+  background-image: url('/static/img/black_paper.png');
   color: #FFF;
   height: 100%;
+  padding: 10px 30px;
 }
 .board * {
   margin: auto;

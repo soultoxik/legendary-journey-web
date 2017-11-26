@@ -14,12 +14,25 @@ import Billboard from './Billboard';
 
 export default {
   name: 'board-animal',
-  props: [
-    'measure',
-    'measureName',
-    'animal',
-    'lifeExp'
-  ],
+  props: {
+    stationData: {
+      required: true
+    }
+  },
+  data: function() {
+    console.log(this.stationData);
+    let animals = this.stationData['animals'];
+    let animal = animals[Math.floor(Math.random()*animals.length)];
+    let infos = animal['info'];
+    let info = infos[Math.floor(Math.random()*infos.length)];
+
+    return {
+      measure: info['concentration'],
+      measureName: info['measure'],
+      animal: animal['animal'],
+      lifeExp: info['lifeexp']
+    }
+  },
   methods: {
     subscript: function(digit) {
       return digit.replace(/(\d+)/g, '<sub>$1</sub>');

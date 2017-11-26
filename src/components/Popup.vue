@@ -3,7 +3,7 @@
   <div id="popup-back" class="hide">
     <div id="popup-dark" @click="hide"></div>
     <div id="popup-content-container">
-      <Slider></Slider>
+      <Slider v-if="showed" :stationData="stationData"></Slider>
     </div>
   </div>
 </div>

@@ -13,9 +13,16 @@ import Billboard from "./Billboard";
 
 export default {
   name: 'board-parkings',
-  props: [
-    'timeToBusStop'
-  ],
+  props: {
+    stationData: {
+      required: true
+    }
+  },
+  data: function() {
+    return {
+      timeToBusStop: this.stationData['timeToBusStop']
+    }
+  },
   components: {
     Billboard
   }

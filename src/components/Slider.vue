@@ -1,6 +1,6 @@
 <template>
 <div id="carousel" @click="move">
-  <component :is="dynamicComponent" ></component>
+  <component :is="getSlide" :stationData="stationData"></component>
 </div>
 </template>
 
@@ -19,6 +19,13 @@ export default {
     BoardMostPolluted,
     BoardParkings
   },
+  props: {
+    stationData: {
+      required: true
+    } 
+  },
+  mounted: function() {
+  },
   data: function() {
     return {
       slides: [
@@ -32,15 +39,32 @@ export default {
   },
   methods: {
     move: function() {
-      if(this.currentSlide === this.slides.length - 1) {
-        this.currentSlide = 0;
-      } else {
-        this.currentSlide++;
+      let show;
+      do {
+        show = true;
+
+        if(this.currentSlide === this.slides.length - 1) {
+          this.currentSlide = 0;
+        } else {
+          this.currentSlide++;
+        }
+        
+        let name = this.slides[this.currentSlide];
+        if(name === 'board-most-polluted' && 
+          Number(this.stationData['topPolluted']) === 0) {
+            show = false;
+          } else {
+            if(name === 'board-parkings' && 
+              Number(this.stationData['timeToBusStop']) === 0) {
+                show = false;
+              }
+          }
       }
+      while(show === false);
     }
   },
   computed: {
-    dynamicComponent: function() {
+    getSlide: function() {
       return this.slides[this.currentSlide];
     }
   }

@@ -12,12 +12,21 @@ import Billboard from "./Billboard";
 
 export default {
   name: 'board-sights',
-  props: [
-    'sight'
-  ],
+  props: {
+    stationData: {
+      required: true
+    }
+  },
   methods: {
     subscript: function(digit) {
       return digit.replace(/(\d+)/g, '<sub>$1</sub>');
+    }
+  },
+  data: function() {
+    let sights = this.stationData['sights'];
+    let sight = sights[Math.floor(Math.random()*sights.length)];
+    return {
+      sight: sight
     }
   },
   components: {
