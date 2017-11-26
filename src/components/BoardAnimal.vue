@@ -1,10 +1,9 @@
 <template id="board-animal">
 <Billboard>
-  <p>Вы выделили <span class="measure">{{measure}} µg/m<sup>3</sup> {{measureName}}</span></p>
+  <p>You exposed <span class="measure">{{measure}} µg/m<sup>3</sup> {{measureName}}</span>  while driving</p>
   <div class="decoration"></div>
-  <p><span class="animal">{{animal}}</span>, дышащий таким воздухом,
-    умрет через <span class="life-exp">{{lifeExp}} дней</span></p>
-  <p class="board-resume">Общественный транспорт решает</p>
+  <p> a <span class="animal">{{animal}}</span> will die in <span class="life-exp">{{lifeExp}} hours</span></p>
+  <p class="board-resume">Animals are not guilty </p>
 </Billboard>
 </template>
 
@@ -26,11 +25,24 @@ export default {
     let infos = animal['info'];
     let info = infos[Math.floor(Math.random()*infos.length)];
 
+    let pretty = function(duration) {
+        var milliseconds = parseInt((duration%1000)/100)
+            , seconds = parseInt((duration/1000)%60)
+            , minutes = parseInt((duration/(1000*60))%60)
+            , hours = parseInt((duration/(1000*60*60))%24);
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        if(hours === 0) return minutes;
+        return hours;
+    }
+
     return {
       measure: info['concentration'],
       measureName: info['measure'],
       animal: animal['animal'],
-      lifeExp: info['lifeexp']
+      lifeExp: pretty(info['lifeexp'])
     }
   },
   methods: {
