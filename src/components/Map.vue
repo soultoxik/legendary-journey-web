@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     openPopup: function(event) {
-      console.log(event);
       this.$emit('popup', event.latlng);
     },
     createMap: function() {

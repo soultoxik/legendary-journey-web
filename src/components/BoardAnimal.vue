@@ -19,7 +19,6 @@ export default {
     }
   },
   data: function() {
-    console.log(this.stationData);
     let animals = this.stationData['animals'];
     let animal = animals[Math.floor(Math.random()*animals.length)];
     let infos = animal['info'];

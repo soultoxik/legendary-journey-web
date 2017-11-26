@@ -21,7 +21,7 @@ export default {
   methods: {
     getData: function(coords) {
       return new Promise((resolve, reject) => {
-        fetch(`${config.dataServer}/fullinfo/${coords[0]}/${coords[1]}`)
+        fetch(`${config.dataServer}/fullinfo/${coords.lat}/${coords.lng}`)
           .then((response) => {
             if(response.ok) {
               resolve(response.json());
